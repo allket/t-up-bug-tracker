@@ -17,7 +17,7 @@ jobs:
       run: |
         if [ "${{ github.event_name }}" = "issues" ]; then
           response=$(curl -X POST -H 'Content-type: application/json' --data '{
-            "channel": "#tf-pience",
+            "channel": "#t-up-issue-tracker",
             "username": "ITK",
             "icon_emoji": ":ghost:",
             "text": "New Issue: \n *Title:* ${{ github.event.issue.title }} \n *Description:* ${{ github.event.issue.body }} \n *URL:* ${{ github.event.issue.html_url }}"
@@ -25,7 +25,7 @@ jobs:
         
         elif [ "${{ github.event_name }}" = "issue_comment" ]; then  
           response=$(curl -X POST -H 'Content-type: application/json' --data '{
-            "channel": "#tf-pience",
+            "channel": "#t-up-issue-tracker",
             "username": "ITK",
             "icon_emoji": ":ghost:",
             "text": "New Comment: \n *Issue:* ${{ github.event.issue.title }} \n *Comment:* ${{ github.event.comment.body }} \n *URL:* ${{ github.event.comment.html_url }}"
