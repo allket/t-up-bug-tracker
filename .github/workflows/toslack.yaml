@@ -1,0 +1,41 @@
+name: Issue and Comment to Slack
+
+on:
+  issues:
+    types: [opened]
+  issue_comment:
+    types: [created]
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Send message to Slack
+      env:
+        SLACK_WEBHOOK_URL: "https://hooks.slack.com/services/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"
+      run: |
+        if [ "${{ github.event_name }}" = "issues" ]; then
+          response=$(curl -X POST -H 'Content-type: application/json' --data '{
+            "channel": "#tf-pience",
+            "username": "ITK",
+            "icon_emoji": ":ghost:",
+            "text": "New Issue: \n *Title:* ${{ github.event.issue.title }} \n *Description:* ${{ github.event.issue.body }} \n *URL:* ${{ github.event.issue.html_url }}"
+          }' $SLACK_WEBHOOK_URL)
+        
+        elif [ "${{ github.event_name }}" = "issue_comment" ]; then  
+          response=$(curl -X POST -H 'Content-type: application/json' --data '{
+            "channel": "#tf-pience",
+            "username": "ITK",
+            "icon_emoji": ":ghost:",
+            "text": "New Comment: \n *Issue:* ${{ github.event.issue.title }} \n *Comment:* ${{ github.event.comment.body }} \n *URL:* ${{ github.event.comment.html_url }}"
+          }' $SLACK_WEBHOOK_URL)
+        fi
+
+        # Check for invalid payload
+        if [ "$response" != "ok" ]; then
+          echo "Error: Slack Webhook returned $response. refer to https://api.slack.com/messaging/webhooks#handling_errors"
+          exit 1
+        fi
+
+        echo "Slack message sent successfully."
