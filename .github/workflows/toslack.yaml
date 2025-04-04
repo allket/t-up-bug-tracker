@@ -20,7 +20,7 @@ jobs:
             "channel": "#t-up-issue-tracker",
             "username": "ITK",
             "icon_emoji": ":ghost:",
-            "text": "New Issue: \n *Title:* ${{ github.event.issue.title }} \n *Description:* ${{ github.event.issue.body }} \n *URL:* ${{ github.event.issue.html_url }}"
+            "text": "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\nNew Issue: \n *Title:* ${{ github.event.issue.title }} \n *Description:* ${{ github.event.issue.body }} \n *URL:* ${{ github.event.issue.html_url }}\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
           }' $SLACK_WEBHOOK_URL)
         
         elif [ "${{ github.event_name }}" = "issue_comment" ]; then  
@@ -28,7 +28,7 @@ jobs:
             "channel": "#t-up-issue-tracker",
             "username": "ITK",
             "icon_emoji": ":ghost:",
-            "text": "New Comment: \n *Issue:* ${{ github.event.issue.title }} \n *Comment:* ${{ github.event.comment.body }} \n *URL:* ${{ github.event.comment.html_url }}"
+            "text": "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\nNew Comment: \n *Issue:* ${{ github.event.issue.title }} \n *Comment:* ${{ github.event.comment.body }} \n *URL:* ${{ github.event.comment.html_url }}\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
           }' $SLACK_WEBHOOK_URL)
         fi
 
