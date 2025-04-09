@@ -18,7 +18,7 @@ jobs:
         if [ "${{ github.event_name }}" = "issues" ]; then
           response=$(curl -X POST -H 'Content-type: application/json' --data '{
             "channel": "#t-up-issue-tracker",
-            "username": "ITK",
+            "username": "Bug Tracker",
             "icon_emoji": ":ghost:",
             "text": "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\nNew Issue: \n *Title:* ${{ github.event.issue.title }} \n *Description:* ${{ github.event.issue.body }} \n *ISSUE URL:* ${{ github.event.issue.html_url }}\n *TRACKER URL:* https://github.com/orgs/allket/projects/8"
           }' $SLACK_WEBHOOK_URL)
@@ -26,7 +26,7 @@ jobs:
         elif [ "${{ github.event_name }}" = "issue_comment" ]; then  
           response=$(curl -X POST -H 'Content-type: application/json' --data '{
             "channel": "#t-up-issue-tracker",
-            "username": "ITK",
+            "username": "Bug Tracker",
             "icon_emoji": ":ghost:",
             "text": "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\nNew Comment: \n *Issue:* ${{ github.event.issue.title }} \n *Comment:* ${{ github.event.comment.body }} \n *COMMENT URL:* ${{ github.event.comment.html_url }}\n *TRACKER URL:* https://github.com/orgs/allket/projects/8"
           }' $SLACK_WEBHOOK_URL)
